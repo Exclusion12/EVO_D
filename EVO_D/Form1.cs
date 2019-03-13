@@ -15,7 +15,7 @@ namespace EVO_D
         public Form1()
         {
             InitializeComponent();
-        }xzxZ
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
