@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace EVO_D
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    public partial class Form1 : Form
     {
         public Form1()
         {
