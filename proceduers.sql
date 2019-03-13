@@ -1,14 +1,12 @@
-create PROCEDURE insert_user @username nvarchar(50) , @password nvarchar(50) , @fname nvarchar(50) ,@mname nvarchar(50) = NULL ,@lname nvarchar(50) ,@regestered_date datetime ,@role nvarchar(50) ,@branch nvarchar(50) , @shift_name nvarchar(50)
+create PROCEDURE insert_user @username nvarchar(50) , @password nvarchar(50) , @fname nvarchar(50) ,@mname nvarchar(50) = NULL ,@lname nvarchar(50) ,@regestered_date datetime ,@role nvarchar(50) , @shift_name nvarchar(50)
 AS
 begin try
 declare @role_id int 
 set @role_id = (select role_id from rolespermissions where role_name = @role);
-declare @branch_id int 
-set @branch_id = (select branch_id from branches where branch_name = @branch);
 declare @shift_id int 
 set @shift_id = (select shift_id from shifts where shift_name = @shift_name);
-insert into users(username,password,fname,mname,lname,regestered_date,role_id,active,branch_id,shift_id)
-values(@username,@password,@fname,@mname,@lname,@regestered_date,@role_id,1,@branch_id,@shift_id)
+insert into users(username,password,fname,mname,lname,regestered_date,role_id,active,shift_id)
+values(@username,@password,@fname,@mname,@lname,@regestered_date,@role_id,1,@shift_id)
 return 1;
 end try
 begin catch
@@ -16,16 +14,6 @@ return -1
 end catch
 Go
 
-create procedure insert_branch @branch_name nvarchar(50) , @branch_address nvarchar(50)
-AS
-begin try
-insert into branches(branch_name,branch_address) values(@branch_name,@branch_address)
-return 1
-end try
-begin catch
-return -1
-end catch
-go
 
 create procedure insert_bank @bank_name nvarchar(50) ,@bank_branch nvarchar(50) ,@bank_address nvarchar(50)
 as
